@@ -1,0 +1,300 @@
+% Kompiler med "pdflatex latex.tex"
+% LaTeX på Wikibooks: http://en.wikibooks.org/wiki/LaTeX/
+% Finn symboler ved å tegne: http://detexify.kirelabs.org/classify.html
+
+\documentclass[12pt,norsk,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[norsk]{babel}
+\usepackage{parskip}
+\usepackage{fixltx2e}
+\usepackage{ulem}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage[margin=1in]{geometry}
+
+\lstset{language=SQL}
+
+\title{Innlevering 1 INF3100}
+\author{Endre Wullum\\ \texttt{endrewu@ulrik.uio.no}}
+
+\begin{document}
+
+\maketitle
+
+*Obligen er løst i samarbeid med geirmuns og torsiguh.
+
+\section*{Oppgave 1}
+\subsection*{A}
+Tog er på BCNF fordi for togNr er en supernøkkel og det ikke finnes flere FDer i relasjonen.
+
+TogTabell er er også på BCNF fordi den kun har en FD som er supernøkkel.
+
+Plass er på 1NF fordi FDen $togNr, vognNr, plassNr \rightarrow vindu$ ikke er slik at X er en supernøkkel, vindu er ikke et nøkkelattributt i relasjonen og $X \subset K$. Altså oppfyller FDen ingen av kravene for 2NF.
+
+\subsection*{B}
+\begin{tabular}{ c | c | c | c | c | c | c}
+ & dato & togNr & vognNr & plassNr & vindu & ledig \\
+ \hline
+Sete & dato\textsubscript{1} & togNr & vognNr & plassNr & vindu & ledig\textsubscript{1}\\
+\hline
+Plass & dato & togNr & vognNr & plassNr & vindu\textsubscript{\sout{2}} & ledig\\
+
+\end{tabular}
+
+Siden det finnes en rad uten subscript kan vi se at dekomposisjonen er tapsfri.
+
+De nye relasjonene er begge på BCNF fordi de oppfyller kravet om at FDen er en supernøkkel.
+
+ Et åpenbart problem med dekomposisjonen er at det er mye overlapp i de to nye relasjonene, dette vil føre til veldig mye dobbeltlagring av data, noe som ikke er ideelt.
+
+\subsection*{C}
+$\Pi$ vognNr (togNr = 401 and dato = 10.6.2008)\textsuperscript{Plass} $-$ \\ $\Pi$ vognNr (togNr = 401 and vindu = true and dato = 10.6.2008 and ledig = true)\textsuperscript{Plass $\Join$  Sete}
+
+\subsection*{D}
+La T = TogTabell
+
+$\sigma\theta\left(\rho\textsubscript{T1} (T) \times \rho\textsubscript{T2} (T)\right) = \emptyset$
+
+Hvor $\theta$ = (T1.togNr = T2.togNr and T1.stasjon = T2.stasjon and T1.ankomstTid $\not=$ T2.ankomstTid)
+
+
+\section*{Oppgave 2}
+\subsection*{A}
+BCF, ACF og CDEF er kandidatnøkler
+
+\subsection*{B}
+$\mathcal{R}$ tilfredsstiller høyest 1NF
+
+\subsection*{C}
+$\mathcal{D} = \{ABF, ACF, BCDE, DG\}$ \\
+
+\begin{tabular}{c | c | c | c | c | c | c | c}
+ & A & B & C & D & E & F & G\\
+\hline
+ ABF & a & b & c\textsubscript{1} & d\textsubscript{1} & e\textsubscript{1} & f & g\textsubscript{1} \\
+\hline
+ ACF & a & b\textsubscript{\sout{2}} & c & d\textsubscript{2} & e\textsubscript{2} & f & g\textsubscript{2} \\
+\hline
+ BCDE & a\textsubscript{\sout{3}} & b & c & d & e & f\textsubscript{3} & g\textsubscript{\sout{3}} \\
+\hline
+ DG & a\textsubscript{4} & b\textsubscript{4} & c\textsubscript{4} & d & e\textsubscript{4} & f\textsubscript{4} & g\\
+\end{tabular}
+
+Det finnes ingen rader som kan bearbeides bedre ut i fra FDene og ingen rader har kun konstanter, altså er ikke dekomposisjonen tapsfri.
+
+\subsection*{D}
+Dekomponering av $\mathcal{R}(ABCDEFG)$:
+
+Med utgangspunkt i $CDE \rightarrow B$:
+
+$\mathcal{R\textsubscript{1}}(ABCDEG)$
+
+$\mathcal{R\textsubscript{2}}(CDEF)$
+
+Videre dekomponering av $\mathcal{R\textsubscript{1}}$:
+
+$\mathcal{R\textsubscript{3}}(DG)$
+
+$\mathcal{R\textsubscript{4}}(ABCDE)$
+
+Videre dekomponering av $\mathcal{R\textsubscript{4}}$:
+
+$\mathcal{R\textsubscript{5}}(BA)$
+
+$\mathcal{R\textsubscript{6}}(BCDE)$
+
+Nå utgjør $\mathcal{R\textsubscript{2}}$, $\mathcal{R\textsubscript{3}}$, $\mathcal{R\textsubscript{5}}$, $\mathcal{R\textsubscript{6}}$ en tapsfri dekomposisjon av $\mathcal{R}$ på BCNF.
+
+Dekomposisjonen er ikke FD-bevarende.
+
+
+
+\subsection*{E}
+$CDF \rightarrow B?$
+
+$CDF\textsuperscript{+} = CDFG$
+
+Tillukningen av $CDF$ inkluderer ikke B, altså holder ikke $CDF \rightarrow B$
+
+\subsection*{F}
+\begin{tabular}{c | c | c | c | c | c | c}
+A & B & C & D & E & F & G\\
+\hline
+a & b & c & d & e & f & g \\
+\hline
+a\textsubscript{\sout{2}} & b\textsubscript{\sout{2}} & c & d & e\textsubscript{\sout{2}} & f & g\textsubscript{\sout{2}} \\
+\hline
+a\textsubscript{\sout{2}} & b & c & d & e & f & g \\
+\hline
+a & b\textsubscript{\sout{2}} & c & d & e\textsubscript{\sout{2}} & f & g \\
+\end{tabular}
+
+Siden de to opprinnelige radene nå er helt uten subskript så er det vist at $CDF \twoheadrightarrow B$ holder.
+
+\section*{Oppgave 3}
+\subsection*{A}
+\begin{lstlisting}
+select fornavn, etternavn, adresse 
+from Person p
+where p.fnr in (
+	select n.fnr
+	from ekteskap e, navneskifte n
+	where etternavn1 <> etternavn2
+	and e.dato = n.dato
+	and (n.fnr = e.fnr or n.fnr = e.fnr))
+	and e.dato >= 2000-1-1
+	and e.dato < 2011-1-1;
+\end{lstlisting}
+
+\subsection*{B}
+\begin{lstlisting}
+select etternavn, fornavn, adresse
+from person
+where fnr in
+	(select n.fnr
+	from ekteskap e, navneskifte n
+	where e.etternavn1 <> e.etternavn2 
+	and e.dato = n.dato 
+	and (
+	 (n.fnr = e.fnr1 and n.etternavn = e.etternavn2) or
+	 (n.fnr = e.fnr2 and n.etternavn = e.etternavn1)));
+\end{lstlisting}
+
+\section*{Oppgave 4}
+
+\subsection*{A}
+select maintitle, firstprodyear, count(episodeid) as episodes \\
+from series s left join episode e on s.seriesid = e.seriesid \\
+where firstprodyear = (select max(firstprodyear) from series) group by maintitle, firstprodyear;\\
+
+\begin{tabular}{l | c | c}
+maintitle & firstprodyear & episodes \\
+\hline
+ Tonight Show with Conan O'Brien, The & 2009 & 0\\
+ Pacific War, The & 2009 & 0\\
+ Untitled Star Wars TV Series & 2009 & 0\\
+ Pacific, The & 2009 & 0\\
+ Saka no ue no kumo & 2009 & 0\\
+ Last Horseman, The & 2009 & 0\\
+\end{tabular}
+
+*Jeg forsto det slik at dette var utskriften oppgaven spurte etter, selv om jeg synes det virker litt uryddig å måtte bruke left join/outer join på denne måten
+
+\subsection*{B}
+select parttype, (count(personid)*1000/(select count(*) from filmparticipation)) * 0.1 as percent \\
+from filmparticipation\\
+group by parttype;
+ 
+ \begin{tabular}{l | c}
+ parttype & percent \\
+ \hline
+  writer & 7.7 \\
+  costume designer & 0.9 \\
+  director & 5.9 \\
+  editor & 2.9 \\
+  cast & 72.0 \\
+  composer & 2.5 \\
+  producer & 7.8 \\
+\end{tabular}
+ 
+\subsection*{C}
+\begin{lstlisting}
+select firstname, lastname
+from filmparticipation fA, filmparticipation fB, 
+	filmparticipation fC, filmparticipation fD, person p
+where fA.filmid = fB.filmid
+and fC.filmid = fD.filmid
+and fA.filmid <> fC.filmid
+and fA.personid = fC.personid
+and fB.personid = fD.personid
+and fA.personid <> fB.personid
+and fA.parttype = fD.parttype
+and fB.parttype = fC.parttype
+and fA.parttype <> fB.parttype
+and p.personid = fA.personid
+group by firstname, lastname
+having count(distinct fB.personid) > 49;
+\end{lstlisting}
+
+
+\begin{tabular}{l | l}
+firstname & lastname\\
+\hline
+Dick & Wolf\\ 
+Donald P. & Bellisario\\
+Glen A. & Larson\\
+James L. & Brooks\\
+Lloyd & Kaufman\\
+Matt & Groening\\
+\end{tabular}\\
+
+*Kjøretid for spørringen mot hele filmdatabasen endte på ca 30 minutter.
+
+\subsection*{D}
+Denne oppgaven har jeg ikke funnet en endelig løsning på, har hatt problemer med å finne en spørring som fungerer. I alle fall, dette er hvordan jeg tenkte at dette skulle funke:
+
+\begin{lstlisting}
+select firstname, lastname
+from person p,
+	(select p.personid
+	from filmitem fi natural join filmparticipation fp2 natural join
+	person p 
+	where fi.filmtype = 'C'
+	and p.gender = 'F'
+	and fp2.parttype like 'cast'
+	group by p.personid
+	having count(fp2.partid) > 50) as p1,
+
+	(select p.personid, fp.filmid
+	from filmparticipation fp natural join person p,
+
+		(select fpB.filmid, min(pB.lastname) as lastname
+		from filmitem fi natural join filmparticipation fpB 
+		natural join person pB
+		where fi.filmtype like 'C'
+		and pB.gender like 'F'
+		and fpB.parttype like 'cast'
+		group by fpB.filmid) as m
+
+	where m.filmid = fp.filmid
+	and m.lastname = p.lastname) as p2
+	where p.personid = p1.personid
+	and p.personid = p2.personid;
+\end{lstlisting}
+
+Som sagt funker ikke denne spørringen. Tanken er i alle fall å finne to tabeller
+
+(i) som finner alle kvinnelige skuespillere som har spilt i mer enn 50 kinofilmer
+
+(ii) som finner alle kvinnelige skuespillere som dukker opp først, alfabetisk, i skuespillerlisten
+
+og så gjøre en krysning over disse tabellene for å finne de som oppfyller oppgaveteksten.
+
+\subsection*{E}
+\begin{lstlisting}
+select p.personid, p.firstname, p.lastname
+from person p natural join filmparticipation fp natural join film f
+where fp.parttype = 'director'
+and p.gender = 'M'
+group by p.personid, p.firstname, p.lastname
+having count(*) > 50
+and count(*) <= (select max(c.count) from (
+	select count(*)
+	from person pB natural join filmparticipation fp
+	where pB.gender = 'F'
+	and fp.parttype like 'cast'
+	and fp.filmid in (
+		select f.filmid
+		from person pB natural join filmparticipation fp 
+			natural join film f
+		where pB.personid = p.personid
+		#and fp.parttype = 'director' \(med denne 
+		#klausulen faar vi 0 tupler!\)
+		)
+	group by pB.personid) as c);
+\end{lstlisting}
+
+\end{document}
+

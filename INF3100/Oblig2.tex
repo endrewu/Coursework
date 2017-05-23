@@ -1,0 +1,270 @@
+% Kompiler med "pdflatex latex.tex"
+% LaTeX på Wikibooks: http://en.wikibooks.org/wiki/LaTeX/
+% Finn symboler ved å tegne: http://detexify.kirelabs.org/classify.html
+
+\documentclass[12pt,norsk,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[norsk]{babel}
+\usepackage{parskip}
+\usepackage{fixltx2e}
+\usepackage{ulem}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage[margin=1in]{geometry}
+\usepackage{qtree}
+\usepackage{lscape}
+\usepackage {tikz}
+\usetikzlibrary {positioning}
+\definecolor {processblue}{cmyk}{0.96,0,0,0}
+
+\lstset{language=SQL}
+
+\title{Innlevering 2 INF3100}
+\author{Endre Wullum\\ \texttt{endrewu@ulrik.uio.no}}
+
+\begin{document}
+
+\maketitle
+
+\section*{Oppgave 1}
+\subsection*{(i)}
+Boligsalg(\underline{salgsnr}, mnr, adr, bolignr, salgsdato, boligtype, areal, pris)
+
+FDer:
+
+$mnr \rightarrow adr, bolignr$
+
+$adr, bolignr \rightarrow mnr$ 
+
+$salgsnr \rightarrow mnr, adr, bolignr, salgsdato, boligtype, areal, pris$
+
+\subsection*{(ii)}
+$mnr \rightarrow adr, bolignr$ er 2NF fordi adr, bolignr ikke er en supernøkkel, ikke er nøkkelattributter men ikke er del av noen kandidatnøkkel
+
+$adr, bolignr \rightarrow mnr$ er 2NF fordi adr, bolignr ikke er en supernøkkel, ikke er nøkkelattributter men ikke er del av noen kandidatnøkkel 
+
+$salgsnr \rightarrow mnr, adr, bolignr, salgsdato, boligtype, areal, pris$ er på BCNF fordi salgsnr er supernøkkel
+
+
+\subsection*{(iii)}
+Adresse(\underline{mnr}, adr, bolignr)
+
+Boligsalg(\underline{salgsnr}, mnr, salgsdato, boligtype, areal, pris)
+
+
+\section*{Oppgave 2}
+\subsection*{(i)}
+\begin{lstlisting}
+create view Kjoper as
+select navn, personnr, mnr, adr, bolignr
+from Person natural join Salgspart natural join Boligsalg
+where salgsrolle = 'kjoper';
+
+create view Selger as
+select navn, personnr, mnr, adr, bolignr
+from Person natural join Salgspart natural join Boligsalg
+where salgsrolle = 'selger';
+
+create view Megler as
+select navn, personnr, mnr, adr, bolignr
+from Person natural join Salgspart natural join Boligsalg
+where salgsrolle = 'megler';
+
+select navn, personnr, adr, bolignr
+from Kjoper k, Selger s, Megler m
+where k.mnr = s.mnr and s.mnr = m.mnr 
+      and k.personnr = s.personnr and s.personnr = m.personnr;
+\end{lstlisting}
+
+\subsection*{(ii)}
+\begin{lstlisting}
+select mnr, count(*)
+from Boligtype b1 join Boligtype b2 on b2.salgsnr = (
+	select min(salgsnr)
+	from Boligsalg
+	where salgsnr > b1.salgsnr)
+where b1.salgsnr <> b2.salgsnr;
+\end{lstlisting}
+
+\subsection*{(iii)}
+\begin{lstlisting}
+select distinct mnr
+from Boligsalg
+where mnr not in (
+	select mnr
+	from Boligsalg natural join Salgspart natural join Person
+	where salgsrolle = 'megler');
+\end{lstlisting}
+
+Selv om, rent logisk må man spørre seg om en bolig solgt uten bruk av en megler ville havnet i en boligsalgsdatabase kurert av boligmeglere.
+
+\section*{Oppgave 3}
+\subsection*{(i)}
+\Tree 
+	[.{$\pi$ personnr, navn, antsalg} 
+	[.{$\gamma$personnr, navn, count(B.salgsnr) $\rightarrow$ antsalg} 
+		[.{$\Join$} 
+			[.{$\pi$ salgsnr} 
+				[.{$\sigma$ salgsdato like '2013\%'} 
+					B ]]
+			[.{$\pi$ navn, personnr} 
+				P ] 
+			[.{$\pi$ salgsnr, personnr}
+				[.{$\sigma$ salgsrolle = 'megler'} 
+					S ]]]]]
+
+
+
+\subsection*{(ii)}
+$\sigma antall > 1(\gamma salgsnr, count(salgsrolla \rightarrow antall(\sigma salgsrolle = 'megler')^{salgspart}) = \emptyset$
+
+\section*{4}
+\subsection*{(i)}
+T1 = r1(a); r1(b); l1(a); w1(a); l1(b); w1(b); u1(a, b)
+
+T2 = r2(c); r2(a); l2(c); w2(c); l2(a); w2(a); u2(a, c)
+
+T3 = r3(a); r3(b); r3(c); l3(c); w3(c); u3(c)
+
+\subsection*{(ii)}
+\begin{tabular}{c | c | c}
+T\textsubscript{1} & T\textsubscript{2} & T\textsubscript{3} \\
+\hline
+r\textsubscript{1}(a) & & \\
+r\textsubscript{1}(b) & & \\
+& r\textsubscript{2}(c) & \\
+& r\textsubscript{2}(a) & \\
+& & r\textsubscript{3}(a)\\
+& & r\textsubscript{3}(b)\\
+& & r\textsubscript{3}(c)\\
+l\textsubscript{1}(a)& & \\
+w\textsubscript{1}(a)& & \\
+l\textsubscript{1}(b)& & \\
+w\textsubscript{1}(b)& & \\
+c\textsubscript{1} & & \\
+u\textsubscript{1}(a, b)&  & \\
+& l\textsubscript{2}(c) & \\
+& w\textsubscript{2}(c) & \\
+& l\textsubscript{2}(a) - avslått & \\
+& a\textsubscript{2} & \\
+& u\textsubscript{2}(c) & \\
+& & l\textsubscript{3}(c)\\
+& & w\textsubscript{3}(c)\\
+& & c\textsubscript{3}\\
+& & u\textsubscript{3}(c)\\
+\end{tabular}
+
+l2(a) blir avslått fordi T\textsubscript{1} allerede har skrevet til a.
+
+\section*{5}
+\subsection*{(i)}
+2 diskkræsj, d\textsubscript{i} og d\textsubscript{i+1} hvor i beregnes modulo 2m+1, er tilstrekkelig til å gi varig tap av data, gitt at de to diskene som kræsjer, mellom seg, inneholder begge speilene av samme stripe  hvor k er en tilfeldig valgt disk i RAIDet.
+
+\subsection*{(ii)}
+Det høyeste antallet diskkræsjer som ikke medfører varig tap av data er $m$. Forutsatt at disse diskkræsjene ikke påvirker to disker, d\textsubscript{i} og d\textsubscript{i+1} som speiler samme stripe.
+
+\section*{Oppgave 6}
+\subsection*{a}
+LaTeX-pakken jeg bruker for å tegne trær (qtree) har en begrensning hvor en node kun kan ha 5 barn. Derfor har jeg valgt å kutte nodene SELECT, FROM og WHERE fra <SFW>. I dette treet anser jeg disse som implisitte at de kommer barnene til <SFW> kommer i rekkefølgen SELECT <sellist> FROM <fromlist> WHERE <condition>.
+
+Videre, grunnet plassbegrensning har jeg måttet skille treet i flere deler i <condition>-delen av treet. Jeg har prøvd å gjøre dette så oversiktlig som mulig, så treet som begynner på rotnoden <condition1> hører til hvor <condition1> er en løvnode osv.
+
+Jeg har også balansert <condition>-subtreet, og er ikke helt sikker på om det er lov eller anbefalt. Håper det er mulig å få en avklaring på det.
+
+\begin{landscape}
+\Tree [.<query> [.<SFW> 
+[.<sellist> [.<attribute> Flyttemelding.mid ] , 	[.<sellist> [.<attribute> Flyttemelding.flyttedato ]]]
+[.<fromlist> [.<relation> Person ] , [.<fromlist> [.<relation> Flyttemelding ] , [.<fromlist> [.<relation> FlyttetPerson ]]]]
+[.<condition1> ]]]
+
+\Tree[.<condition1> <condition2> AND <condition3> ]
+\end{landscape}
+
+\begin{landscape}
+\Tree[.<condition2> [.<condition> [.<attribute> Person.fnr ] = [.<attribute> FlyttetPerson.fnr ]] AND [.<condition> [.<attribute Flyttemelding.mid ] = [.<attribute> FlyttetPerson.mid ]]]
+
+\Tree[.<condition3> [.<condition> [.<attribute> Person.fornavn ] = [.<attribute> 'Jo' ]] AND [.<condition> [.<attribute> Person.etternavn ] = [.<attribute> 'Å' ]]]
+\end{landscape}
+
+\subsection*{b}
+
+\Tree[.{$\pi$Flyttemelding.mid, Flyttemelding.flyttedato}
+	[.{$\sigma$Person.fornavn = 'Jo' AND Person.etternavn = 'Å'}
+	[.{$\sigma$Person.fnr = FlyttetPerson.fnr AND Flyttemelding.mid = FlyttetPerson.mid} [.$\times$ Person Flyttemelding FlyttetPerson ]]]]
+
+\subsection*{c}
+\Tree[.{$\pi$ Flyttemelding.mid, Flyttemelding.flyttedato} 
+	[.{$\Join$}  
+		[.{$\sigma$ fornavn = 'Jo' AND etternavn = 'Å'} 
+			Person ] 
+			Flyttemelding 
+			FlyttetPerson ]]
+
+\section*{Oppgave 7}
+\subsection*{a}
+\begin{center}
+\begin {tikzpicture}[-latex ,node distance = 3 cm and 2 cm, state/.style ={ circle ,draw , minimum width =1 cm}]
+\node[state] (A) {T1};
+\node[state] (B) [below left=of A] {T2};
+\node[state] (C) [below right =of A] {T3};
+\path (A) edge node[above right] {r\textsubscript{1}(a) <\textsubscript{s} w\textsubscript{3}(a)} (C);
+\path (B) edge node[above left] {r\textsubscript{2}(b) <\textsubscript{s} w\textsubscript{1}(b)} (A);
+\path (C) edge node[below] {r\textsubscript{3}(d) <\textsubscript{s} w\textsubscript{2}(d)} (B);
+\end{tikzpicture}
+\end{center}
+
+Siden presedensgrafen blir sirkulær er ikke S\textsubscript{1} konfliktserialiserbar.
+
+\subsection*{b}
+T1 = sl1(a); r1(a); sl1(b); r1(b); xl1(b); w1(b); sl1(c); r1(c); xl1(c); w1(c); u1(a, b, c)
+
+T2 = sl2(b); r2(b); sl2(d); r2(d); xl2(d); w2(d); u2(b, d)
+
+T3 = sl3(d); r3(d); sl3(a); r3(a); xl3(a); w3(a); u3(d, a)
+
+\subsection*{c}
+\begin{tabular}{c | c | c}
+T\textsubscript{1} & T\textsubscript{2} & T\textsubscript{3} \\
+\hline
+sl\textsubscript{1}(a) & & \\
+r\textsubscript{1}(a) & & \\
+& & sl\textsubscript{3}(d)\\
+& & r\textsubscript{3}(d)\\
+sl\textsubscript{1}(b)& & \\
+r\textsubscript{1}(b) & & \\
+& sl\textsubscript{2}(b) & \\
+& r\textsubscript{2}(b) & \\
+xl\textsubscript{1}(b) - avslått & & \\
+& & sl\textsubscript{3}(a)\\
+& & r\textsubscript{3}(a)\\
+& & xl\textsubscript{3}(a) - avslått\\
+& sl\textsubscript{2}(d)& \\
+& r\textsubscript{2}(d) & \\
+& xl\textsubscript{2}(d) - avslått& \\
+\end{tabular}
+
+Og vi ender opp med en vranglås hvor T1 venter på T2, T2 venter på T3 og T3 venter på T1.
+
+\section*{Oppgave 8}
+\subsection*{a}
+Siden T1 er eldre enn T2 får den vente. Siden T2 er eldre enn T3 får den vente. Fordi T3 er yngre enn T1 må den rulle tilbake så de ventende transaksjonene får fullføre. Dette skjer i steg 9.
+
+\subsection*{b}
+Fordi T1 er eldre enn T2 vil T1 skade T2 og T2 må rulle tilbake. Dette skjer i steg 7. T3 ender opp med å vente på T1.
+
+\section*{Oppgave 9}
+\subsection*{a}
+<T1,start>\\
+<T1,b,17>\\
+<T1,c,19>\\
+<T1,commit>
+
+\subsection*{b}
+Alle endringer skal skrives til logg før endringen utføres på disk.\\
+Alle endringer skal være utført på disk før commit skrives til logg.
+
+
+
+\end{document}

@@ -1,0 +1,19 @@
+1; 2012; 210010; 2; 7000; 8500
+1; A; 7000; Anne Hansen
+1; B; -2500; Jan Johansen
+1; C; 0; TOM HYBEL
+1; D; 3500; Liv Larsen
+1; E; -3000; Thea Andersen
+1; F; -2900; Lars Nilsen
+2; A; -3000; Marta Lopez
+2; B; -3000; Tobias Karlsen
+2; C; -3000; Svein Pedersen
+2; D; -2200; Knut Kristiansen
+2; E; -2000; Toasz Lewandowski
+2; F; -2990; Anna Garcia
+3; A; 0; TOM HYBEL
+3; B; -1000; Ole Nilsen
+3; C; 0; TOM HYBEL
+3; D; 4000; Jan Hansen
+3; E; -6000; Bjørn Olsen
+3; F; -1000; Piotr Nowak

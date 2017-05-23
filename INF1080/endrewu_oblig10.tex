@@ -1,0 +1,66 @@
+% Kompiler med "pdflatex latex.tex"
+% LaTeX på Wikibooks: http://en.wikibooks.org/wiki/LaTeX/
+% Finn symboler ved å tegne: http://detexify.kirelabs.org/classify.html
+
+\documentclass[12pt,norsk,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[norsk]{babel}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{fixltx2e}
+
+\title{Innlevering 10 INF1080}
+\author{Endre Wullum\\ \texttt{endrewu@ulrik.uio.no}}
+
+\begin{document}
+
+\maketitle
+
+\section*{Oppgave 17.9}
+Denne oppgaven forstår jeg ikke helt. Variablene får det til å gå litt i surr for meg og jeg finner ikke noen gode eksempler på lignende oppgaver i forelesningsnotatene. Men her er et forsøk.
+\begin{description}
+\item[(a)]La relasjonssymbolet tolkes slik at $R\textsuperscript{M} = \{1, 2\}$. Da er den sann fordi $P(\overline{1}, \overline{1})$, $P(\overline{1}, \overline{2})$, $P(\overline{2}, \overline{1})$ og $P(\overline{2}, \overline{2})$ er sanne, og de er sanne fordi $1, 2 \in R\textsuperscript{M}$
+\item[(b)]La relasjonssymbolet tolkes slik at $R\textsuperscript{M} = \{1, 2\}$. Da er den sann fordi $P(\overline{1}, \overline{1})$, $P(\overline{1}, \overline{2})$, $P(\overline{2}, \overline{1})$ og $P(\overline{2}, \overline{2})$ er sanne, og de er sanne fordi $1, 2 \in R\textsuperscript{M}$
+\end{description}
+\section*{Oppgave 17.12}
+\begin{description}
+\item[(a)]La M være en vilkårlig modell, og D domenet til M.
+
+For å vise at $M \models (F \rightarrow G)$ sann er det tilstrekkelig å vise at hvis M gjør F sann, så gjør M også G sann.
+
+Anta at M gjør $Pa \lor Pb$ er sann.
+
+Da må vi vise at M gjør $\exists xPx$ sann.
+
+Fordi M gjør $Pa \lor Pb$ sann må M også gjøre $\exists xPx$ sann.
+
+Altså kan vi konkludere at $Pa \lor Pb \rightarrow \exists xPx$ er gyldig.
+\item[(b)]La M være en vilkårlig modell, og D domenet til M.
+
+For å vise at $M \models (F \rightarrow G)$ er sann er det tilstrekkelig å vise at hvis M gjør F sann så gjør M også G sann.
+
+Anta at M gjør $\forall xPx$ er sann.
+
+Da må vi vise at M gjør $Pa \land Pb$ sann.
+
+Fordi M gjør $\forall xPx$ sann må M også gjøre $Pa \land Pb$ sann.
+
+Altså kan vi konkludere at $\forall xPx \rightarrow Pa \land Pb$ er gyldig.
+\end{description}
+
+
+%Her er noen flere uttrykk:
+%\begin{align*}
+%	P &= Q \cup S \\
+%	S &= Q \cap R \\
+%	S &\subseteq R \\
+%	R &= F \setminus R \\ 
+%	R &= \emptyset
+%\end{align*}
+
+%Her er et uttrykk: $P = \{a, b, c \}$.
+
+\end{document}
+

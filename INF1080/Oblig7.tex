@@ -1,0 +1,43 @@
+% Kompiler med "pdflatex latex.tex"
+% LaTeX på Wikibooks: http://en.wikibooks.org/wiki/LaTeX/
+% Finn symboler ved å tegne: http://detexify.kirelabs.org/classify.html
+
+\documentclass[12pt,norsk,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[norsk]{babel}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{fixltx2e}
+
+\title{Innlevering 7 INF1080}
+\author{Endre Wullum\\ \texttt{endrewu@ulrik.uio.no}}
+
+\begin{document}
+
+\maketitle
+
+\section*{Oppgave 12.1}
+\begin{description}
+\item[(a)] Språket kan defineres induktivt som den minste mengden S som er slik at $\Lambda \in S$ og hvis $t \in S$ så $ta \in S$ og $tb \in S$
+\item[(b)] Språket kan defineres induktivt som den minste mengden S som er slik at $\Lambda \in S$ og hvis $t \in S$ så $atb \in S$
+\item[(c)] Språket kan defineres induktivt som den minste mengden S som er slik at $\Lambda \in S$ og hvis $t \in S$ så er $tab \in S$
+\item[(d)]$l(\Lambda) = 0$, og $l(tx) = 1 + l(t)$ hvor x er et element $\in A*$
+\item[(e)]Denne forstår jeg ikke helt
+\item[(f)]Ikke denne heller
+\end{description}
+
+%Her er noen flere uttrykk:
+%\begin{align*}
+%	P &= Q \cup S \\
+%	S &= Q \cap R \\
+%	S &\subseteq R \\
+%	R &= F \setminus R \\ 
+%	R &= \emptyset
+%\end{align*}
+
+%Her er et uttrykk: $P = \{a, b, c \}$.
+
+\end{document}
+

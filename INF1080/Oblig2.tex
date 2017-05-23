@@ -1,0 +1,51 @@
+% Kompiler med "pdflatex latex.tex"
+% LaTeX på Wikibooks: http://en.wikibooks.org/wiki/LaTeX/
+% Finn symboler ved å tegne: http://detexify.kirelabs.org/classify.html
+
+\documentclass[12pt,norsk,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[norsk]{babel}
+\usepackage{amsmath}
+\usepackage{parskip}
+
+
+\title{Innlevering 2 INF1080}
+\author{Endre Wullum\\ \texttt{endrewu@ulrik.uio.no}}
+
+\begin{document}
+
+\maketitle
+
+\section*{Oppgave 3.8}
+
+\begin{description}
+\item[(a)]
+\begin{enumerate}
+\item $(M \land H) \rightarrow \lnot B$
+\item $\lnot(B \lor H) \land M $
+\end{enumerate}
+\item[(b)]
+\begin{enumerate}
+\item Hvis det er slik at jeg drikker melk, hvis jeg spiser honning, så spiser jeg brød.
+\item Hvis det er slik at jeg spiser honning, så spiser jeg brød hvis jeg drikker melk.
+\end{enumerate}
+\item[(c)] Dersom man setter sannhetsverdiene til H, M og B til henholdsvis 0, 1 og 0 eller 0, 0 og 0 vil formelen $(H \rightarrow M) \rightarrow B$ bli usann og formelen $H \rightarrow (M \rightarrow B)$ bli sann.
+\item[(d)] Med utgangspunkt i sannhetsverditabellen vil man finne at F er ekvivalent med formelen $(H \land (M \lor B)) \lor (M \land B)$
+
+\end{description}
+
+%Her er noen flere uttrykk:
+%\begin{align*}
+%	P &= Q \cup S \\
+%	S &= Q \cap R \\
+%	S &\subseteq R \\
+%	R &= F \setminus R \\ 
+%	R &= \emptyset
+%\end{align*}
+
+%Her er et uttrykk: $P = \{a, b, c \}$.
+
+\end{document}
+

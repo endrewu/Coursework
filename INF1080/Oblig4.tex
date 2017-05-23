@@ -1,0 +1,72 @@
+% Kompiler med "pdflatex latex.tex"
+% LaTeX på Wikibooks: http://en.wikibooks.org/wiki/LaTeX/
+% Finn symboler ved å tegne: http://detexify.kirelabs.org/classify.html
+
+\documentclass[12pt,norsk,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[norsk]{babel}
+\usepackage{amsmath}
+\usepackage{parskip}
+
+\title{Innlevering 4 INF1080}
+\author{Endre Wullum\\ \texttt{endrewu@ulrik.uio.no}}
+
+\begin{document}
+
+\maketitle
+
+\section*{Oppgave 7.7}
+\begin{description}
+\item[(a)] Anta at $(P \rightarrow Q)$ er sann (1) og at $(Q \rightarrow R)$ er sann (2).
+
+Vis at $(P \rightarrow R)$ sann.
+
+Anta at P er sann (3).
+
+Som følge av 1 og 3 må derfor Q være sann (4).
+
+Som følge av 2 og 4 må derfor R være sann.
+
+Fordi vi har vist at P og R er sann kan vi konkludere med at $(P \rightarrow R)$ er sann.
+
+\item[(c)] Anta for motsigelse at påstanden ikke holder. Da må det finnes en valuasjon som gjør  $(P \rightarrow Q)$ og $(Q \rightarrow R)$ sann (1) som samtidig gjør $(P \rightarrow R)$ usann.
+
+Anta at $(P \rightarrow R)$ er usann (2).
+
+Som følge av 2 må P være sann (3) og R være usann (4) i henhold til vår forståelse av implikasjon.
+
+Som følge av 1 og 3 må Q være sann (5).
+
+Som følge av 1 og 5 må R være sann (6).
+
+Fordi R ikke kan være sann og usann på samme tid, som følge av 4 og 6 har vi derfor en motsigelse. Vi kan konkludere med at påstanden holder.
+\end{description}
+
+\section*{Oppgave 7.10}
+\begin{description}
+\item[(g)] Alle formler F må enten sann eller usann.
+
+Dersom F er sann må F være oppfyllbar.
+
+Dersom F er usann må derimot $\neg F$ være oppfyllbar.
+
+Altså for alle formler F må F være oppfyllbar eller $\neg F$ være oppfyllbar.
+\item[(h)] Et moteksempel er dersom den utsagnslogiske formelen F står $(P \rightarrow Q)$.
+Da vil ikke formelen være gyldig fordi det finnes en valuasjon som gjør F falsifiserbar. I dette tilfellet en valuasjon som gjør P sann og Q usann. 
+\end{description}
+
+%Her er noen flere uttrykk:
+%\begin{align*}
+%	P &= Q \cup S \\
+%	S &= Q \cap R \\
+%	S &\subseteq R \\
+%	R &= F \setminus R \\ 
+%	R &= \emptyset
+%\end{align*}
+
+%Her er et uttrykk: $P = \{a, b, c \}$.
+
+\end{document}
+

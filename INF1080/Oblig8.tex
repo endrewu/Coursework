@@ -1,0 +1,63 @@
+% Kompiler med "pdflatex latex.tex"
+% LaTeX på Wikibooks: http://en.wikibooks.org/wiki/LaTeX/
+% Finn symboler ved å tegne: http://detexify.kirelabs.org/classify.html
+
+\documentclass[12pt,norsk,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[norsk]{babel}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{fixltx2e}
+
+\title{Innlevering 8 INF1080}
+\author{Endre Wullum\\ \texttt{endrewu@ulrik.uio.no}}
+
+\begin{document}
+
+\maketitle
+
+\section*{Oppgave 13.4}
+Vis ved induksjon at påstanden $n\textsuperscript{3} - n$ er delelig med 3 for alle naturlige tall $n$.
+
+Vi erstatter $n$ med tallet 0, og får $0\textsuperscript{3} - 0 = 0$ som er delelig med 3.
+
+Vi antar at påstanden holder for $n = k$, induksjonshypotesen, da må det også holde for $n = k + 1$
+
+Fordi induksjonshypotesen sier at $k\textsuperscript{3} - k$ er delelig med 3 må det være et tall m slik at $k\textsuperscript{3} - k = 3m$
+
+$(k+1)\textsuperscript{3} - (k+1) = k\textsuperscript{3} + 3k\textsuperscript{2} + 2k = (k\textsuperscript{3} - k) + 3k\textsuperscript{2} + 3k = 3m + 3k\textsuperscript{2} + 3k$ ved induksjonshypotesen, som er delelig med 3.
+
+Vi kan konkludere med at påstanden er sann for $n=k+1$. Ved induksjon følger det at påstanden er sann for alle naturlige tall.
+
+\section*{Oppgave 14.6}
+\begin{description}
+\item[(c)]
+\begin{enumerate}
+\item $f(f(b)) = b$
+\item Induksjon
+\item induksjonshypotesen
+\item $f(bx) = f(b)x$
+\item $f(f(b)x)$
+\item punkt 2
+\item $f(b)0$
+\item punkt 3
+\item induksjon
+\item påstanden er sann
+\end{enumerate}
+\end{description}
+
+%Her er noen flere uttrykk:
+%\begin{align*}
+%	P &= Q \cup S \\
+%	S &= Q \cap R \\
+%	S &\subseteq R \\
+%	R &= F \setminus R \\ 
+%	R &= \emptyset
+%\end{align*}
+
+%Her er et uttrykk: $P = \{a, b, c \}$.
+
+\end{document}
+

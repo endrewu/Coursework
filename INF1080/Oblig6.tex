@@ -1,0 +1,50 @@
+% Kompiler med "pdflatex latex.tex"
+% LaTeX på Wikibooks: http://en.wikibooks.org/wiki/LaTeX/
+% Finn symboler ved å tegne: http://detexify.kirelabs.org/classify.html
+
+\documentclass[12pt,norsk,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[norsk]{babel}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{fixltx2e}
+
+\title{Innlevering 6 INF1080}
+\author{Endre Wullum\\ \texttt{endrewu@ulrik.uio.no}}
+
+\begin{document}
+
+\maketitle
+
+\section*{Oppgave 9.1}
+\begin{description}
+\item[(a)]$f$ og $h$ er injektive
+\item[(b)]$f$ og $i$ er surjektive
+\item[(c)]$A$ er verdiområdet, $\{1, 2, 4\}$ er bildemengden
+\item[(d)]Om jeg forstår oppgaven riktig tror jeg $g(f(2))$ 4 og $f(g(2))$ er ikke definert.
+\item[(e)]En funksjon kan ikke sende et element fra definisjonsområdet til to ulike elementer i verdiområdet. I dette tilfellet bryter de to tuplene $\langle R,Q\rangle$ og $\langle R,R\rangle$ dette, og derfor er ikke uttrykket definert som en funksjon
+\item[(f)] I følge definisjonen av en funksjon må ethvert element i definisjonsområdet sendes til et element i verdiområdet. I dette tilfellet er $4\in definisjonsmengden$ men sendes ikke til et element i verdimengden.
+\end{description}
+
+\section*{Oppgave 10.8}
+\begin{description}
+\item[(a)]Den refleksive tillukningen av R er $R \cup \{\langle 1,1\rangle,\langle 2,2\rangle,\langle 3,3\rangle,\langle a,a\rangle,\langle b,b\rangle\}$
+\item[(b)]Den symmetriske tillukningen av R er $R \cup \{\langle a,1\rangle\}$
+\item[(c)]Den transitive tillukningen av R er $R \cup \{\langle 2,2\rangle,\langle 3,3\rangle\}$
+\end{description}
+
+%Her er noen flere uttrykk:
+%\begin{align*}
+%	P &= Q \cup S \\
+%	S &= Q \cap R \\
+%	S &\subseteq R \\
+%	R &= F \setminus R \\ 
+%	R &= \emptyset
+%\end{align*}
+
+%Her er et uttrykk: $P = \{a, b, c \}$.
+
+\end{document}
+

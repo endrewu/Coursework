@@ -1,0 +1,66 @@
+% Kompiler med "pdflatex latex.tex"
+% LaTeX på Wikibooks: http://en.wikibooks.org/wiki/LaTeX/
+% Finn symboler ved å tegne: http://detexify.kirelabs.org/classify.html
+
+\documentclass[12pt,norsk,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[norsk]{babel}
+\usepackage{amsmath}
+\usepackage{parskip}
+
+
+\title{Innlevering 3 INF1080}
+\author{Endre Wullum\\ \texttt{endrewu@ulrik.uio.no}}
+
+\begin{document}
+
+\maketitle
+
+\section*{Oppgave 4.13}
+Følgende grupper av formler er ekvivalente:
+\begin{enumerate}
+\item $\neg (\neg A \lor B)$, $\neg (A \rightarrow B)$, $(A \land \neg B)$
+\item $\neg (\neg A \lor \neg B)$, $\neg (A \rightarrow \neg B)$, $(A \land B)$
+\item $\neg (\neg A \rightarrow B)$, $(\neg A \land \neg B)$, $\neg (A \lor B)$
+\item $\neg (\neg A \rightarrow \neg B)$, $(\neg A \land B)$, $\neg (A \lor \neg B)$
+\end{enumerate}
+
+\section*{Oppgave 5.3}
+\begin{description}
+\item[(a)]Er hverken tautologi eller kontradiksjon ettersom enhver valuasjon som gjør P sann vil gjøre formelen usann, men enhver valuasjon som gjør P usann vil gjøre formelen sann. Altså er den både oppfyllbar og falsifiserbar.
+\item[(b)]Er en tautologi ettersom det ikke finnes noen valuasjon som kan falsifisere den.
+\item[(c)]Er hverken en tautologi eller en kontradiksjon ettersom enhver valuasjon som gjør P usann vil gjøre formelen sann, men en valuasjon som gjør P sann og Q sann vil gjøre formelen usann. Altså er den både oppfyllbar og falsifiserbar.
+\item[(d)]Er en tautologi ettersom det ikke finnes noen valuasjon som kan falsifisere den.
+\item[(e)]Er hverken en tautologi eller en kontradiksjon ettersom en valuasjon som gjør P usann, Q usann og R usann vil gjøre formelen sann. En valuasjon som gjør P sann vil gjøre formelen usann.
+\item[(f)]Er en kontradiksjon, ettersom det ikke finnes en valuasjon som kan gjøre formelen oppfyllbar
+\end{description}
+
+\section*{Oppgave 5.8}
+En formel med konnektivene $\land, \lor, \neg og \rightarrow$ som er ekvivalent med den gitte sannhetsverditabellen for $(F \oplus G)$ kan for eksempel være $(F \land \neg G) \lor (\neg F \land G)$.
+
+Vi kan se at denne formelen også får følgende sannhetsverditabell:
+
+\begin{tabular}{c|c|c}
+  $F$ & $G$ & $(F \land \neg G) \lor (\neg F \land G)$ \\
+  \hline
+  $1$ & $1$ & $0$ \\
+  $1$ & $0$ & $1$ \\
+  $0$ & $1$ & $1$ \\
+  $0$ & $0$ & $0$ \\
+\end{tabular}
+
+%Her er noen flere uttrykk:
+%\begin{align*}
+%	P &= Q \cup S \\
+%	S &= Q \cap R \\
+%	S &\subseteq R \\
+%	R &= F \setminus R \\ 
+%	R &= \emptyset
+%\end{align*}
+
+%Her er et uttrykk: $P = \{a, b, c \}$.
+
+\end{document}
+

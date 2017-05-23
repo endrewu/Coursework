@@ -1,0 +1,52 @@
+% Kompiler med "pdflatex latex.tex"
+% LaTeX på Wikibooks: http://en.wikibooks.org/wiki/LaTeX/
+% Finn symboler ved å tegne: http://detexify.kirelabs.org/classify.html
+
+\documentclass[12pt,norsk,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[norsk]{babel}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{fixltx2e}
+
+\title{Innlevering 11 INF1080}
+\author{Endre Wullum\\ \texttt{endrewu@ulrik.uio.no}}
+
+\begin{document}
+
+\maketitle
+
+\section*{Oppgave 19.12}
+\begin{description}
+\item[(a)]$\{4, 5\}$
+\item[(b)]$\{\emptyset\{1\}, \{4\}, \{1,4\}\}$
+\item[(c)]$\{\{a,b,c,d\},\{e,f\}\}$
+\item[(d)]$\{\{1,2,3\},\{4\}\}$
+\item[(e)]Fordi elementet 2 er en del av begge delmengdene. I henhold til definisjonen av en partisjon må snittet mellom alle delmengdene være den tomme mengden.
+\item[(f)]Fordi en potensmengde er definert slik at potensmengden av A er mengden av alle delmengder av A må alltid $X \in \mathcal{P}$ fordi $X \subseteq X$.
+\end{description}
+
+\section*{Oppgave 19.13}
+Vi vet at for alle $x \in S$ og alle $y \in S$ så er det slik at xRy.
+
+Fordi relasjonen er symmetrisk må det derfor også være slik at yRx.
+
+Fordi vi også vet at relasjonen er transitiv må derfor xRx og yRy.
+
+Nå som vi har sett at relasjonen er transitiv, symmetrisk og refleksiv kan vi derfor konkludere med at den er en ekvivalensrelasjon.
+
+%Her er noen flere uttrykk:
+%\begin{align*}
+%	P &= Q \cup S \\
+%	S &= Q \cap R \\
+%	S &\subseteq R \\
+%	R &= F \setminus R \\ 
+%	R &= \emptyset
+%\end{align*}
+
+%Her er et uttrykk: $P = \{a, b, c \}$.
+
+\end{document}
+

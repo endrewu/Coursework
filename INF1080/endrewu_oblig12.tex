@@ -1,0 +1,58 @@
+% Kompiler med "pdflatex latex.tex"
+% LaTeX på Wikibooks: http://en.wikibooks.org/wiki/LaTeX/
+% Finn symboler ved å tegne: http://detexify.kirelabs.org/classify.html
+
+\documentclass[12pt,norsk,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[norsk]{babel}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{fixltx2e}
+
+\title{Innlevering 12 INF1080}
+\author{Endre Wullum\\ \texttt{endrewu@ulrik.uio.no}}
+
+\begin{document}
+
+\maketitle
+
+\section*{Oppgave 20.15}
+\begin{description}
+\item[(a)]Relasjonen er ikke en ekvivalensrelasjon da $\langle e,e\rangle$ ikke er et element i mengden. Altså er den ikke refleksiv.
+\item[(b)][a] = $\{a, b\}$
+\item[(c)][a] = $\{a\}$
+\item[(d)]Relasjonen er ikke en ekvivalensrelasjon da den inneholder tuplene $\langle b,c\rangle$ og $\langle b,c\rangle$ men ikke $\langle c,a\rangle$ $\langle c,b\rangle$. Altså er den ikke symmetrisk.
+\item[(e)][a] = $\{a\}$
+\item[(f)][a] = $\{a,c\}$
+\end{description}
+
+\section*{Oppgave 20.16}
+\begin{description}
+\item[(a)]Per definisjon er [0] en delmengde av E. Siden ~ er refleksiv må 0 ~ 0, følgelig at $0 \in [0]$. [0] kan altså ikke være den tomme mengden.
+\item[(b)]Anta, som gitt, at $x \in E$ og $y \in E$. Definisjonsmessig er også $0 \in E$, x ~ 0 og y ~ 0. Fordi ~ er symmetrisk og transitiv må derfor x ~ y.
+\item[(c)] La R være en relasjon på ekvivalensklassene [x] og [y]. Definisjonsmessig vet vi at $x \in [x]$ og at $y \in [y]$. Da vet vi at xRx og yRy, altså at relasjonen er refleksiv. 
+\end{description}
+
+Fordi ekvivalensklassene er like og vi vet at alle elementene i en ekvivalensklasse er relatert til hverandre må xRy og yRx, altså må relasjonen være symmetrisk. Fordi alle elementene er relatert til hverandre må den intuitivt også være transitiv.
+
+Fordi relasjonen er refleksiv, symmetrisk og transitiv er den en ekvivalensrelasjon. Derfor må det være slik at hvis [x] = [y] så x ~ y.
+
+\section*{Oppgave 21.16}
+Det er $5^5$, altså 3125 funksjoner fra S til S.
+Av disse er 5!, altså 120 bijektive.
+
+%Her er noen flere uttrykk:
+%\begin{align*}
+%	P &= Q \cup S \\
+%	S &= Q \cap R \\
+%	S &\subseteq R \\
+%	R &= F \setminus R \\ 
+%	R &= \emptyset
+%\end{align*}
+
+%Her er et uttrykk: $P = \{a, b, c \}$.
+
+\end{document}
+

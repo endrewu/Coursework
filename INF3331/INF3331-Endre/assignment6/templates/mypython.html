@@ -1,0 +1,40 @@
+<!doctype html>
+
+<!-- ./templates/mypython.html -->
+
+<html>
+
+<head>
+	<title>Mypython</title>
+
+	<style type="text/css">
+	#feedback {
+		float:top;
+		height: 700px;
+		overflow-y: auto;
+	}
+	#input {
+		float:bottom;
+	}
+	</style>
+</head>
+
+<body>
+	<div id="feedback">
+		{% for item in feedback %}
+		<p>{{ item }}</p>
+		{% endfor %}
+	</div>
+
+	<div id="input">
+		<form action="handle_feedline" method="POST">
+		    input:
+		    <input type="text" name="string" autofocus>
+		    <input type="submit" value="Go">
+		</form>
+	</div>
+
+</body>
+
+</html>
+
